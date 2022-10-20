@@ -1,0 +1,65 @@
+{
+  "name": "safe-recursion",
+  "version": "1.0.0",
+  "description": "The type-safe way to write truly recursive functions without running into stack size limits",
+  "license": "MIT",
+  "keywords": [
+    "safe",
+    "recursion",
+    "recursive",
+    "recurse",
+    "stack",
+    "hybrid",
+    "esm",
+    "cjs",
+    "commonjs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WhiteAutumn/safe-recursion.git"
+  },
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "main": "./dist/cjs/index.cjs.js",
+  "module": "./dist/mjs/index.esm.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/mjs/index.esm.d.ts",
+        "default": "./dist/mjs/index.esm.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.cjs.d.ts",
+        "default": "./dist/cjs/index.cjs.js"
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint . --color",
+    "lint:fix": "eslint . --fix --color",
+    "lint:strict": "eslint . --color --max-warnings=0",
+    "build": "run-p build:*",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "postbuild": "node ./scripts/postbuild.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "npm-run-all": "^4.0.0",
+    "pre-commit": "^1.0.0",
+    "tsx": "^3.0.0",
+    "typescript": "~4.8.0"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
